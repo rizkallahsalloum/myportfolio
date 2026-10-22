@@ -1,0 +1,27 @@
+/* ===============================
+   Swiss Design Grid Lines - Fixed
+   =============================== */
+
+// Grid line variables (defined locally to avoid dependency issues)
+$grid-line-color: rgba(0, 0, 0, 0.08) !default;
+$grid-line-width: 1px !default;
+
+// Local grid variables (matching your main grid system)
+$local-grid-columns-desktop: 16 !default;
+$local-grid-columns-tablet: 8 !default;
+$local-grid-columns-mobile: 4 !default;
+$local-grid-margin: clamp(1rem, 4vw, 2.4rem) !default;
+$local-grid-gutter: 2rem !default;
+
+/* Breakpoint mixin (simplified version) */
+@mixin grid-at-breakpoint($breakpoint) {
+  @if $breakpoint == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+}

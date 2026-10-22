@@ -1,0 +1,106 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.services {
+  display: grid;
+  grid-template-columns: repeat($grid-columns-mobile, 1fr);
+  grid-template-rows: auto min-content auto;
+  grid-column: 1 / -1;
+  gap: $grid-gutter;
+
+  &__intro,
+  .section-title,
+  .services__grid {
+    grid-column: 1 / span $grid-columns-mobile;
+  }
+  &__cta {
+    grid-column: 1 / -1;
+    align-self: flex-start;
+  }
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    &__number {
+      font-family: var(--primary-font);
+      font-size: 3.6rem;
+      color: rgba(229, 231, 235, 1);
+      position: relative;
+      display: inline-block;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 2.2rem;
+        left: 5rem;
+        width: max(calc(100% - 50px), 80px);
+        height: 2px;
+        background-color: rgba(102, 102, 102, 1);
+      }
+    }
+    &__content {
+      padding-left: 5rem;
+    }
+    &__title {
+      font-size: var(--font-size-h3-mobile);
+    }
+    &__desc {
+      padding-top: var(--space-sm);
+      font-size: var(--font-size-body-desktop);
+    }
+    &__list {
+      list-style: decimal-leading-zero outside;
+      padding-left: 2rem;
+    }
+    &__item {
+      font-size: var(--font-size-body-desktop);
+      font-weight: var(--fw-semibold);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: 0.8rem;
+    }
+  }
+  // ─── Tablet and up ───
+  @include at-breakpoint(md) {
+    grid-template-columns: repeat($grid-columns-tablet, 1fr);
+    grid-template-rows: auto min-content auto;
+
+    .section-title {
+      grid-column: 1 / 4;
+    }
+    .services__grid {
+      grid-column: 1 / span $grid-columns-tablet;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+    &__cta {
+      grid-column: 5 / -1;
+      align-self: flex-start;
+    }
+  }
+  //─── Desktop and up ───
+  @include at-breakpoint(lg) {
+    grid-template-columns: repeat($grid-columns-desktop, 1fr);
+    grid-template-rows: auto min-content auto;
+    &__intro {
+      font-size: var(--font-size-body-large-desktop);
+      grid-column: 1 / 7;
+    }
+    .section-title {
+      grid-column: 1 / 6;
+    }
+    .services__grid {
+      grid-column: 6 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+    .service-card__title {
+      font-size: var(--font-size-h3-desktop);
+    }
+    &__cta {
+      grid-column: 12 / -1;
+      align-self: flex-end;
+    }
+  }
+}

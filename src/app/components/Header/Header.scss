@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.desktop-header {
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.mobile-header {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  &.visible-on-scroll {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@include at-breakpoint(md) {
+  .desktop-header {
+    display: none;
+  }
+
+  .mobile-header {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+}

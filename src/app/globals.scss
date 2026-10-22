@@ -1,0 +1,516 @@
+@import './styles/variables';
+@import './styles/mixins';
+@import './styles/grid-overlay';
+
+/* globals.scss (or fonts.scss imported in globals) */
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayRoman.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayRomanItalic.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayMedium.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayMediumItalic.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayBold.ttf')
+    format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayBoldItalic.ttf')
+    format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayBlack.ttf')
+    format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/neue-haas-display/NeueHaasDisplayBlackItalic.ttf')
+    format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* add other weights (Thin, XThin, Light) the same way if you have them */
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ExtraLight / Light / Regular / Medium / Semibold / Bold */
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-ExtraLightItalic.ttf')
+    format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-MediumItalic.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-SemiboldItalic.ttf')
+    format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Hairline / Extra weights if present */
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-Hairline.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editor's Note";
+  src: url('/fonts/editors-note/EditorsNote-HairlineItalic.ttf')
+    format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-primary);
+  background-color: var(--color-main-bg);
+  color: var(--color-primary-black);
+  line-height: var(--line-height-normal);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: var(--font-size-body-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-body-desktop);
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-fast;
+  &:hover {
+    color: var(--color-primary-red);
+  }
+}
+::selection {
+  background-color: var(--color-primary-red);
+  color: var(--color-white);
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all $transition-fast;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+img,
+picture {
+  max-inline-size: 100%;
+  display: block;
+}
+
+.h2 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  line-height: var(--line-height-snug);
+  letter-spacing: -0.01em;
+  font-size: var(--font-size-h2-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-h2-desktop);
+  }
+}
+
+.h3 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-h3-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-h3-desktop);
+  }
+}
+
+.section-title {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-regular);
+  font-size: var(--font-size-hero-mobile);
+
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-section-title-desktop);
+  }
+}
+.body-large {
+  font-family: var(--font-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-body-large-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-body-large-desktop);
+  }
+}
+
+.body {
+  font-family: var(--font-secondary);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-body-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-body-desktop);
+  }
+}
+
+main {
+  grid-column: 1 / -1;
+}
+.small {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-small-mobile);
+  @include at-breakpoint(md) {
+    font-size: var(--font-size-small-desktop);
+  }
+}
+
+.full-width-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 3rem 0;
+  @include between-breakpoints(xs, lg) {
+    padding: 6rem 0;
+  }
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+  @include at-breakpoint(md) {
+    padding: 0 var(--space-lg);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-red {
+  color: var(--color-primary-red);
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.bg-light {
+  background-color: var(--color-light-gray);
+}
+
+.bg-dark {
+  background-color: var(--color-primary-black);
+  color: var(--color-white);
+}
+
+.break {
+  display: block;
+}
+.d-flex {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+// Animation classes - CRITICAL for the Copy component
+.line {
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+html.lenis,
+html.lenis body {
+  /* auto is the default  */
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ─── Utility Arrow Block ────────────────────────── */
+
+.u-arrow-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--color-primary-red);
+  }
+}
+
+.u-arrow {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+
+  /* ─── Size Modifiers ─── */
+  &--sm {
+    font-size: 1.2rem; // 12px approx.
+  }
+
+  &--md {
+    font-size: 1.6rem; // 16px default
+  }
+
+  &--lg {
+    font-size: 2rem; // 20px approx.
+  }
+}
+
+.u-arrow__icon {
+  position: absolute;
+  padding: 0.5rem 0 0 0.5rem;
+  top: 0;
+  left: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.u-arrow__icon--alt {
+  transform: translate(-100%, 100%);
+}
+
+/* ─── Hover State ───────────────────────────── */
+
+.u-arrow-trigger:hover .u-arrow__icon {
+  transform: translate(100%, -100%);
+  filter: brightness(0) saturate(100%) invert(32%) sepia(77%) saturate(2328%)
+    hue-rotate(335deg) brightness(96%) contrast(95%);
+}
+
+.u-arrow-trigger:hover .u-arrow__icon--alt {
+  transform: translate(0, 0);
+  filter: brightness(0) saturate(100%) invert(32%) sepia(77%) saturate(2328%)
+    hue-rotate(335deg) brightness(96%) contrast(95%);
+}

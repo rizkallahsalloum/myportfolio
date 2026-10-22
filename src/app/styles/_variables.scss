@@ -1,0 +1,150 @@
+@import './mixins';
+@import './grid-overlay';
+:root {
+  /* 🎨 Colors (runtime, theming possible) */
+  --color-primary-red: hsl(359, 83%, 60%);
+  --color-primary-red-40: hsl(359, 83%, 40%);
+  --color-primary-black: hsl(0, 0%, 4%);
+  --color-primary-black-30: hsl(0, 0%, 30%);
+  --color-secondary-black: hsl(0, 0%, 15%);
+  --color-medium-gray: hsl(0, 0%, 40%);
+  --color-light-gray: hsl(0, 0%, 95%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-main-bg: hsl(0, 0%, 95%);
+
+  --font-primary: 'Neue Haas Display', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-secondary: 'Editors Note', Georgia, 'Times New Roman', serif;
+
+  /* Font sizes (can be adapted by user preferences or themes) */
+  --font-size-section-title-desktop: clamp(4.8rem, 6vw, 9.6rem);
+  --font-size-section-title-mobile: clamp(3.2rem, 8vw, 4.8rem);
+  --font-size-hero-desktop: clamp(5.6rem, 8vw, 12.8rem);
+  --font-size-h1-desktop: clamp(4rem, 5vw, 6.4rem);
+  --font-size-h2-desktop: clamp(3.2rem, 4vw, 4.8rem);
+  --font-size-h3-desktop: clamp(2.4rem, 3vw, 3.2rem);
+  --font-size-body-large-desktop: 2rem;
+  --font-size-body-desktop: 1.6rem;
+  --font-size-small-desktop: 1.4rem;
+
+  --font-size-hero-mobile: clamp(4rem, 12vw, 6.4rem);
+  --font-size-h1-mobile: clamp(2.8rem, 8vw, 4rem);
+  --font-size-h2-mobile: clamp(2.4rem, 6vw, 3.2rem);
+  --font-size-h3-mobile: clamp(2rem, 5vw, 2.4rem);
+  --font-size-body-large-mobile: 1.8rem;
+  --font-size-body-mobile: 1.6rem;
+  --font-size-small-mobile: 1.4rem;
+
+  /* Line heights */
+  --line-height-tightest: 0.8;
+  --line-height-tight: 0.9;
+  --line-height-snug: 1.1;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  /* Spacing scale (runtime, useful for utilities) */
+  --space-xss: 0.5rem;
+  --space-xs: 0.8rem;
+  --space-sm: 1.6rem;
+  --space-md: 2.4rem;
+  --space-lg: 3.2rem;
+  --space-xl: 4.8rem;
+  --space-2xl: 6.4rem;
+  --space-3xl: 9.6rem;
+  --space-4xl: 12.8rem;
+}
+
+/* ===============================
+   SCSS Variables
+   =============================== */
+
+/* Grid system */
+$grid-columns-desktop: 16;
+$grid-columns-tablet: 8;
+$grid-columns-mobile: 4;
+
+$grid-margin: clamp(1rem, 4vw, 2.4rem);
+$grid-gutter: 2rem;
+$grid-row-height: auto;
+$grid-row-gap: 0;
+
+/* Breakpoints*/
+$breakpoints: (
+  xs: 280px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px,
+);
+
+/* Layout constraints */
+$container-max-width: 120rem;
+$grid-gap: 3.2rem;
+
+/* Animation timings */
+$transition-fast: 0.2s ease-out;
+$transition-normal: 0.3s ease-out;
+$transition-slow: 0.5s ease-out;
+
+/* Z-index layers */
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+/* ===============================
+   Grid Mixin / Function
+   =============================== */
+@function grid-col($cols, $total-cols: $grid-columns-desktop) {
+  @return calc(
+    (100% - (2 * #{$grid-margin}) - (#{$grid-gutter} * (#{$total-cols} - 1))) /
+      #{$total-cols} * #{$cols} + (#{$grid-gutter} * ($cols - 1))
+  );
+}
+
+/* ===============================
+   Grid Class
+   =============================== */
+.grid {
+  display: grid;
+
+  // Mobile first
+  grid-template-columns: repeat($grid-columns-mobile, 1fr);
+
+  column-gap: $grid-gutter;
+  // margin: 0 $grid-margin;
+  row-gap: $grid-row-gap;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 var(--space-sm);
+  @include at-breakpoint(md) {
+    padding: 0 var(--space-sm);
+  }
+  @include at-breakpoint(2xl) {
+    padding: 0 var(--space-lg);
+  }
+  // Tablet and up
+  @include at-breakpoint(md) {
+    grid-template-columns: repeat($grid-columns-tablet, 1fr);
+    margin: 0 $grid-margin;
+  }
+
+  // Desktop and up
+  @include at-breakpoint(xl) {
+    grid-template-columns: repeat($grid-columns-desktop, 1fr);
+    margin: 0 $grid-margin;
+  }
+}

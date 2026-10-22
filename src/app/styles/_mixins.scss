@@ -1,0 +1,174 @@
+// Responsive Breakpoints
+@mixin at-breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
+@mixin between-breakpoints($min, $max) {
+  @if (map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max)) {
+    @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint `#{$min}` or `#{$max}` not found in $breakpoints map.";
+  }
+}
+
+// This new mixin allows for mobile-first styling (min-width).
+// If you need max-width for certain use cases, you can create a separate mixin.
+// It's generally best to stick with one approach for consistency.
+@mixin at-max-breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found.";
+  }
+}
+
+// You can now define a single, all-purpose responsive mixin
+@mixin respond-to($map, $default-breakpoint: mobile) {
+  @each $breakpoint, $properties in $map {
+    @if $breakpoint == $default-breakpoint {
+      @each $prop, $value in $properties {
+        #{$prop}: $value;
+      }
+    } @else {
+      @include at-breakpoint($breakpoint) {
+        @each $prop, $value in $properties {
+          #{$prop}: $value;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------
+
+// Flexbox Utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// ----------------------------------------------------
+
+// Typography Mixins
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ----------------------------------------------------
+
+// Visual Effects
+@mixin hover-lift {
+  transition: transform $transition-normal;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@mixin card-shadow {
+  box-shadow: 0 4px 6px -1px rgba($primary-black, 0.1),
+    0 2px 4px -1px rgba($primary-black, 0.06);
+}
+
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+// ----------------------------------------------------
+
+// Positioning
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin fixed-full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ----------------------------------------------------
+
+// Swiss Design Elements
+@mixin swiss-border {
+  border: 1px solid $primary-black;
+}
+
+@mixin swiss-button {
+  @include swiss-border;
+  padding: $spacing-sm $spacing-md;
+  font-family: $font-primary;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $primary-black;
+    color: $white;
+  }
+}
+
+// ----------------------------------------------------
+
+// Animation Utilities
+@mixin slide-in-animation($direction: 'up', $distance: 30px) {
+  opacity: 0;
+
+  @if $direction == 'up' {
+    transform: translateY($distance);
+  } @else if $direction == 'down' {
+    transform: translateY(-$distance);
+  } @else if $direction == 'left' {
+    transform: translateX($distance);
+  } @else if $direction == 'right' {
+    transform: translateX(-$distance);
+  }
+
+  &.animate {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: opacity $transition-slow, transform $transition-slow;
+  }
+}

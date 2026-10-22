@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.about {
+  display: grid;
+  grid-template-columns: repeat($grid-columns-mobile, 1fr);
+  grid-template-rows: min-content;
+  grid-column: 1 / -1;
+  gap: $grid-gutter;
+
+  .section-title {
+    grid-column: 1 / span $grid-columns-mobile;
+    grid-row: 1;
+  }
+  &__content {
+    grid-column: 1 / -1;
+    &-paragraph {
+      font-size: var(--font-size-body-desktop);
+      padding: var(--space-sm) 0;
+    }
+  }
+  // ─── Tablet and up ───
+  @include at-breakpoint(md) {
+    grid-template-columns: repeat($grid-columns-tablet, 1fr);
+    gap: 2rem;
+  }
+  .section-title {
+    grid-column: 1 / span 6;
+  }
+
+  // ─── Desktop and up ───
+  @include at-breakpoint(lg) {
+    grid-template-columns: repeat($grid-columns-desktop, 1fr);
+    .section-title {
+      grid-column: 1 / span 12;
+    }
+
+    &__content {
+      padding-top: 8rem;
+      grid-column: 5/12;
+      display: flex;
+      gap: 3.2rem;
+    }
+  }
+}

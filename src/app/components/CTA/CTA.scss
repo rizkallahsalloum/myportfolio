@@ -1,0 +1,59 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.cta-button {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 3px solid var(--color-primary-black);
+  padding-bottom: 0.25rem;
+  transition: all 0.3s ease;
+  align-items: flex-end;
+  &:hover {
+    border-bottom-color: var(--color-primary-red);
+    color: var(--color-primary-red);
+
+    .cta-button__icon {
+      filter: brightness(0) saturate(100%) invert(32%) sepia(77%)
+        saturate(2328%) hue-rotate(335deg) brightness(96%) contrast(95%);
+    }
+  }
+
+  @include respond-to(
+    (
+      mobile: (
+        gap: 0.15rem,
+        border-bottom: 2px solid var(--color-primary-black),
+        padding-bottom: 0.15rem,
+      ),
+      tablet: (
+        gap: 0.25rem,
+        border-bottom: 3px solid var(--color-primary-black),
+        padding-bottom: 0.25rem,
+      ),
+    )
+  );
+
+  &__text {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    @include respond-to(
+      (
+        mobile: (
+          font-size: var(--font-size-body-large-mobile),
+        ),
+        tablet: (
+          font-size: var(--font-size-body-large-desktop),
+        ),
+      )
+    );
+  }
+
+  &__icon {
+    margin-left: auto;
+    fill: var(--color-primary-black);
+    transition: fill 0.3s ease;
+  }
+}
